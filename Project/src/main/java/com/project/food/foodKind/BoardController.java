@@ -49,12 +49,12 @@ public class BoardController {
         try {
             InputStream fileStream = file.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile);
-        } catch (IOException e) {
+        } catch (IOException e) { 
             FileUtils.deleteQuietly(targetFile);
             e.printStackTrace();
         }
         return fileName;
-    }
+    } 
 	
 	@RequestMapping(value="/images/{imagename}", method=RequestMethod.GET)
 	public @ResponseBody ResponseEntity<byte[]> userSearch(@PathVariable("imagename") String imagename) throws IOException {
