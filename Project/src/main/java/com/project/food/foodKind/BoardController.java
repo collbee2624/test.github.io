@@ -35,7 +35,7 @@ public class BoardController {
 	@RequestMapping(value="/saveBoardMng", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> saveBoardMng(@RequestBody Map<String, Object> param) {
 		Map<String, Object> resultMap = boardMngService.saveBoardMng(param);
-		
+		System.out.println("T");
 		return resultMap;
 	}
 	
