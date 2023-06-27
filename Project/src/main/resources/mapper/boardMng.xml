@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.BoardMngMapper">
+
+	<insert id ="insertBoardMng">
+		INSERT INTO BOARDMNG
+		(
+		    BD_MNG_ID
+		  , BD_ID
+		  , BD_TYPE
+		  , BD_SORT
+		  , BD_NM
+		  , USE_YN
+		  , BD_TYPE_NM
+		)
+		VALUES
+		(
+		    #{bd_mng_id}
+		  , #{bd_id}
+		  , #{bd_type}
+		  , #{bd_sort}
+		  , #{bd_nm}
+		  , #{use_yn}
+		  , #{bd_type_nm}
+		)
+	</insert>
+	
+	<update id="updateBoardMng">
+		UPDATE BOARDMNG
+		   SET BD_TYPE = #{bd_type}
+		     , USE_YN = #{use_yn}
+		     , BD_NM = #{bd_nm}
+		     , BD_SORT = #{bd_sort}
+		     , BD_TYPE_NM =  #{chg_bd_type_nm}
+		 WHERE BD_MNG_ID = #{bd_mng_id}
+	</update>
+	
+	<select id="getBdTypeNm" resultType="String">
+		SELECT MAX(BD_TYPE_NM) FROM BOARDMNG WHERE BD_TYPE = #{bd_type}
+	</select>
+	
+	<select id="getBdId" resultType="String">
+		SELECT CONCAT ( 'B', LPAD(SUBSTR(MAX(BD_ID), 2, 10) + 1, 3, 0)) FROM BOARDMNG
+	</select>
+	
+
+</mapper>
